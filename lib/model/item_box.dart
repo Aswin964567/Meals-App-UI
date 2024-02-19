@@ -1,44 +1,90 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/item_detail.dart';
+import 'package:meals_app/model/adding_button.dart';
 
 class ItemBox extends StatelessWidget {
-  const ItemBox({super.key});
+  final String title;
+  const ItemBox({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          height: 50,
-          width: 340,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            children: [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(20, 8, 8, 8),
-                child: Text(
-                  'text',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ItemDetail()),
+            );
+          },
+          child: Container(
+            height: 80,
+            width: 340,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            title,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            "Qty",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 25,
+                          ),
+                          Container(
+                              decoration: const BoxDecoration(
+                                color: Color(0xffd9d9d9),
+                              ),
+                              child: const AddingButton()),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(5),
-                child: Image.asset(
-                  width: 50,
-                  height: 40,
+                Image.asset(
                   'assets/menu.png',
-                ),
-              )
-            ],
+                  width: 81,
+                  height: 68,
+                )
+              ],
+            ),
           ),
         ),
-      ),
+        const SizedBox(height: 20),
+      ],
     );
+    //   ),
+    // );
   }
 }

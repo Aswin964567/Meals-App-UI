@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/model/container.dart';
+import 'package:meals_app/profile.dart';
+import 'package:meals_app/search.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+   HomeScreen({super.key});
+
+  final TextEditingController _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,12 @@ class HomeScreen extends StatelessWidget {
               right: 12,
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Profile()),
+                );
+              },
               icon: const CircleAvatar(
                 backgroundImage: AssetImage('assets/ellipse.gif'),
               ),
@@ -29,117 +38,128 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 20),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 30, bottom: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 30, bottom: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "Select a Outlet Near You..!",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 330,
+              height: 35,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: TextField(
+                controller: _textController,
+                onSubmitted: (text) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchLocation(),
+                    ),
+                  );
+                },
+                decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                    hintText: "Search for your location !",
+                    alignLabelWithHint: true,
+                    // fillColor: Colors.white,
+                    prefixIcon: Icon(Icons.search),
+                    border: InputBorder.none),
+              ),
+            ),
+            const SizedBox(
+              height: 35,
+            ),
+            Column(
               children: [
-                Text(
-                  "Select a Outlet Near You..!",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ContainerBox(
+                      text: 'Kannur',
+                    ),
+                    ContainerBox(
+                      text: 'Thalassery',
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ContainerBox(
+                      text: 'Payyannur',
+                    ),
+                    ContainerBox(
+                      text: 'Thaliparamba',
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ContainerBox(
+                      text: 'Koothuparamba',
+                    ),
+                    ContainerBox(
+                      text: 'Eranholi',
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                Container(
+                  width: 230,
+                  height: 44,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.white),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Nothing near You ?",
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text("Find Our Collaborative Outlets",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ))
+                    ],
                   ),
                 ),
               ],
             ),
-          ),
-          Container(
-            width: 330,
-            height: 35,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: const TextField(
-              decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                  hintText: "Search for your location !",
-                  alignLabelWithHint: true,
-                  // fillColor: Colors.white,
-                  prefixIcon: Icon(Icons.search),
-                  border: InputBorder.none),
-            ),
-          ),
-          const SizedBox(
-            height: 35,
-          ),
-          Column(
-            children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ContainerBox(
-                    text: 'Kannur',
-                  ),
-                  ContainerBox(
-                    text: 'Thalassery',
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 35,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ContainerBox(
-                    text: 'Payyannur',
-                  ),
-                  ContainerBox(
-                    text: 'Thaliparamba',
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 35,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ContainerBox(
-                    text: 'Koothuparamba',
-                  ),
-                  ContainerBox(
-                    text: 'Eranholi',
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 35,
-              ),
-              Container(
-                width: 230,
-                height: 44,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.white),
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Nothing near You ?",
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text("Find Our Collaborative Outlets",
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                        ))
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

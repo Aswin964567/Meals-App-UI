@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/appetizers.dart';
 import 'package:meals_app/model/menu_item.dart';
 
 class CategoryList extends StatelessWidget {
@@ -13,9 +14,16 @@ class CategoryList extends StatelessWidget {
           return Column(
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Appetizer(),
+                    ),
+                  );
+                },
                 child: Container(
-                  height: 50,
+                  height: 60,
                   width: 340,
                   decoration: BoxDecoration(
                     color: Colors.white,

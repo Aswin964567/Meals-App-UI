@@ -72,6 +72,11 @@ flutter:
     - assets/menu3.png
     - assets/menu4.png
     - assets/menu5.png
+    - assets/menu6.png
+    - assets/dish1.png
+    - assets/dish2.png
+    - assets/dish3.png
+    - assets/nonveg.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

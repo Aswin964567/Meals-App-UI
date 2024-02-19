@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/model/item_box.dart';
+import 'package:meals_app/item_detail.dart';
 import 'package:meals_app/splash_screen.dart';
 
 void main() {

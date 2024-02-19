@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/model/appbar.dart';
 import 'package:meals_app/model/menu_container.dart';
+
 
 class MenuItems extends StatelessWidget {
   const MenuItems({super.key});
@@ -7,31 +9,7 @@ class MenuItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF827500),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.white,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(
-              right: 12,
-            ),
-            child: IconButton(
-              onPressed: () {},
-              icon: const CircleAvatar(
-                backgroundImage: AssetImage('assets/ellipse.gif'),
-              ),
-            ),
-          )
-        ],
-      ),
+      appBar:const CommonAppBar(),
       body: Column(
         children: [
           const Padding(
