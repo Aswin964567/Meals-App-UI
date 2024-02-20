@@ -4,21 +4,35 @@ import 'package:meals_app/model/adding_button.dart';
 
 class ItemBox extends StatelessWidget {
   final String title;
-  const ItemBox({super.key, required this.title});
+  final double cHeight;
+  final bool hasButton;
+  final double imageHeight;
+  final double imageWidth;
+  final double rightPadding;
+  const ItemBox(
+      {super.key,
+      required this.title,
+      required this.cHeight,
+      required this.hasButton,
+      required this.imageHeight,
+      required this.imageWidth,
+      this.rightPadding = 8});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 30),
         InkWell(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ItemDetail()),
             );
+            // navigateToScreen(context, ItemDetail());
           },
           child: Container(
-            height: 80,
+            height: cHeight,
             width: 340,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -50,41 +64,57 @@ class ItemBox extends StatelessWidget {
                       const SizedBox(
                         height: 15,
                       ),
-                      Row(
+                      const Row(
                         children: [
-                          const Text(
+                          Text(
                             "Qty",
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 25,
                           ),
-                          Container(
-                              decoration: const BoxDecoration(
-                                color: Color(0xffd9d9d9),
-                              ),
-                              child: const AddingButton()),
+                          AddingButton(
+                            buttonColor: Colors.black,
+                            containerColor: Color(0xffd9d9d9),
+                          ),
                         ],
                       ),
+                      if (hasButton)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              onPressed: () {},
+                              child: Text('Remove Item'),
+                            ),
+                          ],
+                        )
                     ],
                   ),
                 ),
-                Image.asset(
-                  'assets/menu.png',
-                  width: 81,
-                  height: 68,
+                Padding(
+                  padding: EdgeInsets.only(right: rightPadding),
+                  child: Image.asset(
+                    'assets/menu.png',
+                    // width: 81,
+                    // height: 68,
+                    width: imageWidth,
+                    height: imageHeight,
+                    fit: BoxFit.contain,
+                  ),
                 )
               ],
             ),
           ),
         ),
-        const SizedBox(height: 20),
       ],
     );
     //   ),
     // );
   }
+
+  void navigateToScreen(BuildContext context, ItemDetail itemDetail) {}
 }

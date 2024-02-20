@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/category.dart';
 import 'package:meals_app/model/adding_button.dart';
 import 'package:meals_app/model/appbar.dart';
+import 'package:meals_app/model/menu_item.dart';
 
 class ItemDetail extends StatelessWidget {
   const ItemDetail({super.key});
@@ -77,7 +79,7 @@ class ItemDetail extends StatelessWidget {
                       "Chinese Cusine",
                       style: TextStyle(
                         color: Color(0xFF820046),
-                        fontSize: 15,
+                        fontSize: 17,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -88,7 +90,7 @@ class ItemDetail extends StatelessWidget {
                       "100% Non-Veg",
                       style: TextStyle(
                         color: Color(0xFF820046),
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -115,7 +117,7 @@ class ItemDetail extends StatelessWidget {
                 "Description",
                 style: TextStyle(
                   color: Color(0xFF645A02),
-                  fontSize: 15,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -130,7 +132,7 @@ class ItemDetail extends StatelessWidget {
               // textAlign: TextAlign.justify,
               'Hot and Sour Chicken Soup: A fiery blend of tender chicken, mushrooms, bamboo shoots, carrots, and bell peppers in a rich broth. With a tantalizing mix of soy sauce, rice vinegar, and chili paste, this soup delivers a perfect balance of heat and tang. A deliciously satisfying culinary adventure in every spoonful.',
               style: TextStyle(
-                fontSize: 11,
+                fontSize: 13,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -138,26 +140,26 @@ class ItemDetail extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          Row(
+          const Row(
             children: [
-              const SizedBox(
+              SizedBox(
                 width: 35,
               ),
-              const Text(
+              Text(
                 "Add this Item",
                 style: TextStyle(
                   color: Color(0xFF820046),
                   fontStyle: FontStyle.italic,
-                  fontSize: 12,
+                  fontSize: 13,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: 25,
               ),
-              Container(
-                color: const Color(0xFF645A02),
-                child: const AddingButton(),
+              AddingButton(
+                buttonColor: Color.fromARGB(255, 255, 255, 255),
+                containerColor: Color(0xFF645A02),
               )
             ],
           ),
@@ -165,6 +167,14 @@ class ItemDetail extends StatelessWidget {
             height: 60,
           ),
           InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CategoryScreen(
+                            menuItems: menuItems,
+                          ),),);
+            },
             child: Container(
                 width: 256,
                 height: 44,
@@ -175,6 +185,7 @@ class ItemDetail extends StatelessWidget {
                 child: const Center(
                   child: Text("Add More Dishes",
                       style: TextStyle(
+                        color: Colors.white,
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       )),

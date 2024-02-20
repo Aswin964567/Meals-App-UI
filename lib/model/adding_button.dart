@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AddingButton extends StatefulWidget {
-  const AddingButton({super.key});
+  final Color containerColor;
+  final Color buttonColor;
+  const AddingButton(
+      {super.key, required this.buttonColor, required this.containerColor});
 
   @override
   State<AddingButton> createState() => _AddingButtonState();
@@ -25,34 +28,49 @@ class _AddingButtonState extends State<AddingButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        InkWell(
+    return Container(
+      color: widget.containerColor,
+      child: Row(
+        children: [
+          InkWell(
             onTap: _decrementCounter,
-            child: Container(
+            child: SizedBox(
               height: 20,
               width: 20,
               // decoration: BoxDecoration(color: Color(0xffd9d9d9)),
-              child: Center(child: Text('-')),
-            )),
-        Container(
-          height: 20,
-          width: 20,
-          child: Center(
-            child: Text('$_counter'),
+              child: Center(
+                  child: Text(
+                '-',
+                style: TextStyle(color: widget.buttonColor),
+              )),
+            ),
           ),
-        ),
-        InkWell(
+          SizedBox(
+            height: 20,
+            width: 20,
+            child: Center(
+              child: Text(
+                '$_counter',
+                style: TextStyle(color: widget.buttonColor),
+              ),
+            ),
+          ),
+          InkWell(
             onTap: _incrementCounter,
-            child: Container(
+            child: SizedBox(
               height: 20,
               width: 20,
               // decoration: const BoxDecoration(color: Color(0xffd9d9d9)),
-              child: const Center(
-                child: Text('+'),
+              child: Center(
+                child: Text(
+                  '+',
+                  style: TextStyle(color: widget.buttonColor),
+                ),
               ),
-            )),
-      ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

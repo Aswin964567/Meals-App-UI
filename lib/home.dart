@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/cart.dart';
 import 'package:meals_app/model/container.dart';
 import 'package:meals_app/profile.dart';
 import 'package:meals_app/search.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+  
+   void navigateToScreen(BuildContext context, Widget screen) {
+    // Navigate to the specified screen
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => screen,
+      ),
+    );
+  }
+
+  HomeScreen({super.key});
 
   final TextEditingController _textController = TextEditingController();
 
@@ -14,7 +26,16 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF827500),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            navigateToScreen(context, MyCart());
+            // () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => MyCart(),
+            //         ),
+            //       );
+          },
           icon: Image.asset(
             'assets/shoping.png',
           ),

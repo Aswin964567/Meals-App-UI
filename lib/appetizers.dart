@@ -33,12 +33,22 @@ class Appetizer extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(
-            height: 15,
-          ),
+          // const SizedBox(
+          //   height: 15,
+          // ),
           Expanded(
             child: ListView(
-              children: items.map((item) => ItemBox(title: item)).toList(),
+              children: items
+                  .map(
+                    (item) => ItemBox(
+                      title: item,
+                      cHeight: 80,
+                      hasButton: false,
+                      imageHeight: 68,
+                      imageWidth: 81,
+                    ),
+                  )
+                  .toList(),
             ),
           ),
           const Text(
